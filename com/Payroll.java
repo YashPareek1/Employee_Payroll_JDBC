@@ -20,7 +20,12 @@ public class Payroll {
 	
 		Connection con=DriverManager.getConnection(url,userName,password); 
 		System.out.println("Connected with db...");
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from employee_payroll" );  
 		
+		while(rs.next()) {
+			System.out.println(rs.getInt("id")+" "+rs.getString("Name")+" "+rs.getString("Gender"));  
+		}
 		
 		con.close();  			
 		}catch(Exception e){ System.out.println(e);}  
